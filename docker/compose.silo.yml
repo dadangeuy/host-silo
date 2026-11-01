@@ -1,0 +1,13 @@
+services:
+  silo:
+    image: docker.io/pgsty/silo:latest
+    command: 'server --console-address ":9001" /data'
+    env_file:
+      - ./environment/silo.env
+      - path: ./storage/secret/silo.env
+        required: false
+    volumes:
+      - ./storage/silo/data:/data
+    network_mode: container:tailscale
+    healthcheck:
+      test: 'silo healthcheck ready'
