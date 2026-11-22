@@ -17,8 +17,8 @@ stop:
 update:
 	make stop
 	git pull --rebase --depth=1 --allow-unrelated-histories
-	docker compose pull
 	make decrypt-secret
+	docker compose pull
 	make start
 	docker system prune -a -f
 
