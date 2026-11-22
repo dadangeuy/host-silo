@@ -39,3 +39,6 @@ decrypt-secret:
 	for file in secret/*.gpg; do \
 		gpg --batch --yes --pinentry-mode loopback --passphrase-file $(SECRET_KEY) -o storage/secret/$$(basename "$$file" .gpg) -d "$$file"; \
 	done
+
+scan:
+	ggshield secret scan repo .
