@@ -6,7 +6,6 @@ bootstrap:
 	mkdir -p $(abspath $(STORAGE_PATH))
 	ln -s $(abspath $(STORAGE_PATH)) $(abspath storage)
 	mkdir -p storage/silo/data
-	mkdir -p storage/secret
 	make decrypt-secret
 
 start:
@@ -36,6 +35,7 @@ encrypt-secret:
 	done
 
 decrypt-secret:
+	mkdir -p storage/secret/
 	for file in secret/*.gpg; do \
 		gpg --batch --yes --pinentry-mode loopback --passphrase-file $(SECRET_KEY) -o storage/secret/$$(basename "$$file" .gpg) -d "$$file"; \
 	done
