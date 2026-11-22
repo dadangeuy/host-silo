@@ -16,7 +16,7 @@ stop:
 
 update:
 	make stop
-	git pull --rebase --depth=1 --allow-unrelated-histories
+	git pull --rebase --depth=2
 	docker compose pull
 	make decrypt-secret
 	make start
