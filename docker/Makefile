@@ -19,6 +19,7 @@ update:
 	make stop
 	git pull --rebase
 	docker compose pull
+	make decrypt-secret
 	make start
 	docker system prune -a -f
 
